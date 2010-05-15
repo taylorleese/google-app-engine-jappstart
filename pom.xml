@@ -346,7 +346,7 @@
                         <jvmFlag>-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8000</jvmFlag>
                     </jvmFlags>
                     <severity>0</severity>
-                    <serverId>jappstart.com</serverId>
+                    <serverId>${google.app.id}</serverId>
                 </configuration>
             </plugin>
             <plugin>

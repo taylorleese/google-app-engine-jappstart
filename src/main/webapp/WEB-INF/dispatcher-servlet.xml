@@ -29,7 +29,7 @@
         http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
     <context:annotation-config />
-    <context:component-scan base-package="${application.package}" />
+    <context:component-scan base-package="com.jappstart" />
 
     <mvc:annotation-driven />
 
