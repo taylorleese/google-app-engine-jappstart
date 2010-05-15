@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright (C) 2010 Taylor Leese (tleese22@gmail.com)
+  
+    This file is part of jappstart.
+
+    jappstart is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    jappstart is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with jappstart.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+
+    <http auto-config="false" access-decision-manager-ref="accessDecisionManager" use-expressions="true">
+        <intercept-url pattern="/_ah/**" access="hasRole('ROLE_ANONYMOUS')" requires-channel="http" />
+        <intercept-url pattern="/admin/**" access="hasRole('ROLE_ANONYMOUS')" requires-channel="http" />
+        <intercept-url pattern="/appstats/**" access="hasRole('ROLE_ANONYMOUS')" requires-channel="http" />
+        <intercept-url pattern="/login/**" access="hasRole('ROLE_ANONYMOUS')" requires-channel="${application.secureChannel}" />
+        <intercept-url pattern="/error/**" access="hasRole('ROLE_ANONYMOUS')" requires-channel="http" />
+        <intercept-url pattern="/register/**" access="hasRole('ROLE_ANONYMOUS')" requires-channel="${application.secureChannel}" />
+        <intercept-url pattern="/" access="hasRole('ROLE_ANONYMOUS')" requires-channel="http" />
+        <intercept-url pattern="/**" access="hasRole('ROLE_USER')" requires-channel="http" />
+        <form-login login-page="/login" login-processing-url="/login/submit" authentication-failure-url="/login?login_error=1" />
+        <logout logout-url="/logout" />
+        <remember-me services-ref="rememberMeServices" key="${google.app.id}" />
+    </http>
+
+    <beans:bean id="userPassAuthFilterBeanPostProcessor" class="${application.package}.service.auth.UserPassAuthFilterBeanPostProcessor">
+        <beans:property name="usernameParameter" value="username" />
+        <beans:property name="passwordParameter" value="password" />
+    </beans:bean>
+
+    <beans:bean id="userDetailsService" class="${application.package}.service.auth.UserDetailsServiceImpl" />
+
+    <authentication-manager alias="authenticationManager">
+        <authentication-provider user-service-ref="userDetailsService">
+            <password-encoder hash="sha-256" base64="true">
+                <salt-source user-property="salt" />
+            </password-encoder>
+        </authentication-provider>
+    </authentication-manager>
+
+    <beans:bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
+        <beans:constructor-arg value="256" />
+        <beans:property name="encodeHashAsBase64" value="true" />
+    </beans:bean>
+
+    <beans:bean id="roleHierarchy" class="org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl">
+        <beans:property name="hierarchy">
+            <beans:value>
+                ROLE_ADMIN > ROLE_USER
+                ROLE_USER >
+                ROLE_ANONYMOUS
+            </beans:value>
+        </beans:property>
+    </beans:bean>
+
+    <beans:bean id="accessDecisionManager" class="org.springframework.security.access.vote.AffirmativeBased">
+        <beans:property name="decisionVoters">
+            <beans:list>
+                <beans:bean class="org.springframework.security.web.access.expression.WebExpressionVoter">
+                    <beans:property name="expressionHandler">
+                        <beans:bean class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler">
+                            <beans:property name="roleHierarchy" ref="roleHierarchy" />
+                        </beans:bean>
+                    </beans:property>
+                </beans:bean>
+            </beans:list>
+        </beans:property>
+    </beans:bean>
+
+    <beans:bean id="persistentTokenRepository" class="${application.package}.service.auth.PersistentTokenRepositoryImpl" />
+
+    <beans:bean id="rememberMeServices" class="org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices">
+        <beans:property name="userDetailsService" ref="userDetailsService" />
+        <beans:property name="tokenRepository" ref="persistentTokenRepository" />
+        <beans:property name="cookieName" value="REMEMBER_ME" />
+        <beans:property name="parameter" value="remember_me" />
+        <beans:property name="key" value="${google.app.id}" />
+    </beans:bean>
+
+</beans:beans>

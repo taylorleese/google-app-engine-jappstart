@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (C) 2010 Taylor Leese (tleese22@gmail.com)
+  
+    This file is part of jappstart.
+
+    jappstart is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    jappstart is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with jappstart.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 3.0//EN" "http://tuckey.org/res/dtds/urlrewrite3.0.dtd">
+<urlrewrite>
+    <rule>
+        <from>^/appstats/(.*)$</from>
+        <to last="true">/appstats/$1</to>
+    </rule>
+    <rule>
+        <from>^/_ah/(.*)$</from>
+        <to last="true">/_ah/$1</to>
+    </rule>
+    <rule>
+        <from>^/(.*)$</from>
+        <to last="true">/app/$1</to>
+    </rule>
+</urlrewrite>
