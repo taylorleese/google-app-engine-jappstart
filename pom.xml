@@ -26,9 +26,52 @@
     <groupId>com.jappstart</groupId>
     <artifactId>jappstart-web</artifactId>
     <packaging>war</packaging>
-    <name>jappstart.web</name>
+    <name>jappstart</name>
     <version>0.0.1-SNAPSHOT</version>
-    <url>http://maven.apache.org</url>
+    <inceptionYear>2010</inceptionYear>
+    <url>http://jappstart.com</url>
+
+    <licenses>
+        <license>
+            <name>GNU General Public License v3</name>
+            <url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <organization>
+        <name>jappstart</name>
+        <url>http://jappstart.com</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <id>taylor</id>
+            <name>Taylor Leese</name>
+            <email>tleese22@gmail.com</email>
+        </developer>
+    </developers>
+
+    <mailingLists>
+        <mailingList>
+            <name>jappstart</name>
+            <subscribe>jappstart-subscribe@googlegroups.com</subscribe>
+            <unsubscribe>jappstart+unsubscribe@googlegroups.com</unsubscribe>
+            <post>jappstart@googlegroups.com</post>
+            <archive>http://groups.google.com/group/jappstart</archive>
+        </mailingList>
+    </mailingLists>
+  
+    <issueManagement>
+        <system>Google Code</system>
+        <url>http://code.google.com/p/jappstart/issues/list</url>
+    </issueManagement>
+
+    <scm>
+        <connection>scm:git:git://github.com/tleese22/jappstart.git</connection>
+        <developerConnection>scm:git:git@github.com:tleese22/jappstart.git</developerConnection>
+        <url>http://github.com/tleese22/jappstart</url>
+    </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -40,20 +83,6 @@
         <springframework.security.version>3.0.3.CI-SNAPSHOT</springframework.security.version>
         <slf4j.version>1.5.11</slf4j.version>
     </properties>
-
-    <developers>
-        <developer>
-            <id>taylor</id>
-            <name>Taylor Leese</name>
-            <email>tleese22@gmail.com</email>
-        </developer>
-    </developers>
-
-    <scm>
-        <connection>scm:git:git://github.com/tleese22/jappstart.git</connection>
-        <developerConnection>scm:git:git@github.com:tleese22/jappstart.git</developerConnection>
-        <url>http://github.com/tleese22/jappstart</url>
-    </scm>
 
     <repositories>
         <repository>
@@ -277,11 +306,6 @@
             <version>${slf4j.version}</version>
         </dependency>
     </dependencies>
-
-    <organization>
-        <name>jappstart</name>
-        <url>http://www.jappstart.com</url>
-    </organization>
 
     <build>
         <finalName>${artifactId}-${version}</finalName>
