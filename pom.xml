@@ -50,9 +50,9 @@
     </developers>
 
     <scm>
-        <connection>git@github.com:tleese22/jappstart.git</connection>
-        <url>git@github.com:tleese22/jappstart.git</url>
-        <developerConnection>git@github.com:tleese22/jappstart.git</developerConnection>
+        <connection>scm:git:git://github.com/tleese22/jappstart.git</connection>
+        <developerConnection>scm:git:git@github.com:tleese22/jappstart.git</developerConnection>
+        <url>http://github.com/tleese22/jappstart</url>
     </scm>
 
     <repositories>
