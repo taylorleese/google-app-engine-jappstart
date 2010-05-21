@@ -24,6 +24,10 @@
         <to last="true">/appstats/$1</to>
     </rule>
     <rule>
+        <from>^/remote_api$</from>
+        <to last="true">/remote_api</to>
+    </rule>
+    <rule>
         <from>^/_ah/(.*)$</from>
         <to last="true">/_ah/$1</to>
     </rule>
