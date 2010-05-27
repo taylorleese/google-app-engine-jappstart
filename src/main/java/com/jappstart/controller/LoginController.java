@@ -24,6 +24,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -60,6 +61,19 @@ public class LoginController {
     public final void setUserDetailsService(
         final EnhancedUserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
+    }
+
+    /**
+     * Adds an identifier to the model map to indicate there was an error
+     * logging in.
+     *
+     * @param modelMap the model map
+     * @return the view name
+     */
+    @RequestMapping(value = "/login/error", method = RequestMethod.GET)
+    public final String error(final ModelMap modelMap) {
+        modelMap.put("error", true);
+        return "login";
     }
 
     /**

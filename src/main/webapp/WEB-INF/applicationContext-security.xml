@@ -35,7 +35,7 @@
         <intercept-url pattern="/register/**" access="hasRole('ROLE_ANONYMOUS')" requires-channel="${application.secureChannel}" />
         <intercept-url pattern="/" access="hasRole('ROLE_ANONYMOUS')" requires-channel="http" />
         <intercept-url pattern="/**" access="hasRole('ROLE_USER')" requires-channel="http" />
-        <form-login login-page="/login" login-processing-url="/login/submit" authentication-failure-url="/login?login_error=1" />
+        <form-login login-page="/login" login-processing-url="/login/submit" authentication-failure-url="/login/error" />
         <logout logout-url="/logout" />
         <remember-me services-ref="rememberMeServices" key="${google.app.id}" />
     </http>

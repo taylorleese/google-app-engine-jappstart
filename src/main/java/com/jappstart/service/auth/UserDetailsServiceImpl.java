@@ -21,6 +21,7 @@ package com.jappstart.service.auth;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -60,16 +61,20 @@ public class UserDetailsServiceImpl implements EnhancedUserDetailsService {
             "SELECT u FROM UserAccount u WHERE username = :username");
         query.setParameter("username", username);
 
-        final UserAccount user = (UserAccount) query.getSingleResult();
+        try {
+            final UserAccount user = (UserAccount) query.getSingleResult();
 
-        authorities.add(new GrantedAuthorityImpl(user.getRole()));
+            authorities.add(new GrantedAuthorityImpl(user.getRole()));
 
-        final UserDetails userDetails = new EnhancedUser(user.getUsername(),
-            user.getPassword(), user.getSalt(), user.isEnabled(),
-            user.isAccountNonExpired(), user.isCredentialsNonExpired(),
-            user.isAccountNonLocked(), authorities);
+            final UserDetails userDetails = new EnhancedUser(user.getUsername(),
+                user.getPassword(), user.getSalt(), user.isEnabled(),
+                user.isAccountNonExpired(), user.isCredentialsNonExpired(),
+                user.isAccountNonLocked(), authorities);
 
-        return userDetails;
+            return userDetails;
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     /**

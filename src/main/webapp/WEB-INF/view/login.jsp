@@ -25,7 +25,7 @@
     <body>
 		<h3>Please enter your username and password.</h3>
 		
-		<c:if test="${not empty param.login_error}">
+		<c:if test="${not empty error}">
   			<p class="error">Your login attempt was not successful, try again.</p>
 		</c:if>
 		
