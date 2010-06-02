@@ -27,7 +27,7 @@
 
     <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <property name="defaultErrorView" value="error" />
-        <property name="warnLogCategory" value="com.qoogeo" />
+        <property name="warnLogCategory" value="com.jappstart" />
     </bean>
 
     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
