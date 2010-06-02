@@ -1,22 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-    Copyright (C) 2010 Taylor Leese (tleese22@gmail.com)
-  
-    This file is part of jappstart.
-
-    jappstart is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    jappstart is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with jappstart.  If not, see <http://www.gnu.org/licenses/>.
--->
 <beans:beans xmlns="http://www.springframework.org/schema/security"
     xmlns:beans="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -40,12 +22,12 @@
         <remember-me services-ref="rememberMeServices" key="${google.app.id}" />
     </http>
 
-    <beans:bean id="userPassAuthFilterBeanPostProcessor" class="${application.package}.service.auth.UserPassAuthFilterBeanPostProcessor">
+    <beans:bean id="userPassAuthFilterBeanPostProcessor" class="com.jappstart.service.auth.UserPassAuthFilterBeanPostProcessor">
         <beans:property name="usernameParameter" value="username" />
         <beans:property name="passwordParameter" value="password" />
     </beans:bean>
 
-    <beans:bean id="userDetailsService" class="${application.package}.service.auth.UserDetailsServiceImpl" />
+    <beans:bean id="userDetailsService" class="com.jappstart.service.auth.UserDetailsServiceImpl" />
 
     <authentication-manager alias="authenticationManager">
         <authentication-provider user-service-ref="userDetailsService">
@@ -84,7 +66,7 @@
         </beans:property>
     </beans:bean>
 
-    <beans:bean id="persistentTokenRepository" class="${application.package}.service.auth.PersistentTokenRepositoryImpl" />
+    <beans:bean id="persistentTokenRepository" class="com.jappstart.service.auth.PersistentTokenRepositoryImpl" />
 
     <beans:bean id="rememberMeServices" class="org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices">
         <beans:property name="userDetailsService" ref="userDetailsService" />

@@ -212,6 +212,12 @@
             <version>2.1</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4.1</version>
+            <scope>provided</scope>
+        </dependency>
 
         <!-- Compile Scope -->
         <dependency>
@@ -308,7 +314,7 @@
     </dependencies>
 
     <build>
-        <finalName>${artifactId}-${version}</finalName>
+        <finalName>${project.artifactId}-${project.version}</finalName>
         <filters>
             <filter>filter-${env}.properties</filter>
         </filters>
@@ -368,6 +374,8 @@
                     <jvmFlags>
                         <jvmFlag>-Xdebug</jvmFlag>
                         <jvmFlag>-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8000</jvmFlag>
+                        <jvmFlag>-Dmail.log_mail_level=WARNING</jvmFlag>
+                        <jvmFlag>-Dmail.log_mail_body=true</jvmFlag>
                     </jvmFlags>
                     <severity>0</severity>
                     <serverId>${google.app.id}</serverId>

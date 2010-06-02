@@ -34,4 +34,12 @@ public interface EnhancedUserDetailsService extends UserDetailsService {
      */
     void addUser(final UserAccount user);
 
+    /**
+     * Activates the user with the given activation key.
+     *
+     * @param key the activation key
+     * @return true if successful; false otherwise
+     */
+    boolean activateUser(final String key);
+
 }

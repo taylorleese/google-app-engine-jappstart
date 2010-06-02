@@ -28,7 +28,7 @@ import javax.persistence.Query;
 import org.springframework.security.core.authority.GrantedAuthorityImpl;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jappstart.exception.DuplicateUserException;
@@ -37,7 +37,7 @@ import com.jappstart.model.auth.UserAccount;
 /**
  * The user details service implementation.
  */
-@Repository
+@Service
 public class UserDetailsServiceImpl implements EnhancedUserDetailsService {
 
     /**
@@ -96,6 +96,30 @@ public class UserDetailsServiceImpl implements EnhancedUserDetailsService {
         }
 
         entityManager.persist(user);
+    }
+
+    /**
+     * Activates the user with the given activation key.
+     *
+     * @param key the activation key
+     * @return true if successful; false otherwise
+     */
+    @Override
+    @Transactional
+    public final boolean activateUser(final String key) {
+        final Query query = entityManager.createQuery(
+            "SELECT u FROM UserAccount u WHERE activationKey = :key");
+        query.setParameter("key", key);
+
+        try {
+            final UserAccount user = (UserAccount) query.getSingleResult();
+            user.setEnabled(true);
+            entityManager.persist(user);
+
+            return true;
+        } catch (NoResultException e) {
+            return false;
+        }
     }
 
 }

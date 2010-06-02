@@ -21,12 +21,15 @@ package com.jappstart.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -35,6 +38,7 @@ import com.jappstart.exception.DuplicateUserException;
 import com.jappstart.form.Register;
 import com.jappstart.model.auth.UserAccount;
 import com.jappstart.service.auth.EnhancedUserDetailsService;
+import com.jappstart.service.mail.MailService;
 
 /**
  * The registration controller.
@@ -58,6 +62,16 @@ public class RegisterController {
      * The user details service.
      */
     private EnhancedUserDetailsService userDetailsService;
+
+    /**
+     * The mail service.
+     */
+    private MailService mailService;
+
+    /**
+     * The message source.
+     */
+    private MessageSource messageSource;
 
     /**
      * Returns the password encoder.
@@ -100,6 +114,44 @@ public class RegisterController {
     }
 
     /**
+     * Gets the mail service.
+     *
+     * @return the mail service
+     */
+    public final MailService getMailService() {
+        return mailService;
+    }
+
+    /**
+     * Sets the mail service.
+     *
+     * @param mailService the mail service
+     */
+    @Autowired
+    public final void setMailService(final MailService mailService) {
+        this.mailService = mailService;
+    }
+
+    /**
+     * Gets the message source.
+     *
+     * @return the message source
+     */
+    public final MessageSource getMessageSource() {
+        return messageSource;
+    }
+
+    /**
+     * Sets the message source.
+     *
+     * @param messageSource the message source
+     */
+    @Autowired
+    public final void setMessageSource(final MessageSource messageSource) {
+        this.messageSource = messageSource;
+    }
+
+    /**
      * Display the create account form.
      *
      * @param model the model map
@@ -109,6 +161,26 @@ public class RegisterController {
     public final String create(final ModelMap model) {
         model.addAttribute(REGISTER, new Register());
         return "create";
+    }
+
+    /**
+     * Activate the account with the given activation key.
+     *
+     * @param key the activation key
+     * @param modelMap the model map
+     * @return the view name
+     */
+    @RequestMapping(value = "/activate/{key}", method = RequestMethod.GET)
+    public final String activate(@PathVariable("key") final String key,
+        final ModelMap modelMap) {
+
+        final boolean status = userDetailsService.activateUser(key);
+
+        if (!status) {
+            modelMap.put("error", true);
+        }
+
+        return "activate";
     }
 
     /**
@@ -137,9 +209,12 @@ public class RegisterController {
             userDetailsService.addUser(user);
         } catch (DuplicateUserException e) {
             binding.addError(new FieldError(REGISTER, "email",
-                "An account already exists with this e-mail."));
+                messageSource.getMessage("create.error.username", null,
+                    LocaleContextHolder.getLocale())));
             return "create";
         }
+
+        mailService.sendActivationEmail(user);
 
         return "redirect:/register/success";
     }

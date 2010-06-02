@@ -75,6 +75,11 @@ public class UserAccount {
     private String role;
 
     /**
+     * The activation key.
+     */
+    private String activationKey;
+
+    /**
      * The enabled status.
      */
     private boolean enabled;
@@ -108,12 +113,13 @@ public class UserAccount {
     public UserAccount(final String username) {
         this.key = KeyFactory.createKey(getClass().getSimpleName(), username);
         this.username = username;
-        this.enabled = true;
+        this.enabled = false;
         this.accountNonExpired = true;
         this.accountNonLocked = true;
         this.credentialsNonExpired = true;
         this.role = "ROLE_USER";
         this.salt = UUID.randomUUID().toString();
+        this.activationKey = UUID.randomUUID().toString();
     }
 
     /**
@@ -240,6 +246,24 @@ public class UserAccount {
      */
     public final void setRole(final String role) {
         this.role = role;
+    }
+
+    /**
+     * Gets the activation key.
+     *
+     * @return the activation key
+     */
+    public final String getActivationKey() {
+        return activationKey;
+    }
+
+    /**
+     * Sets the activation key.
+     *
+     * @param activationKey the activation key
+     */
+    public final void setActivationKey(final String activationKey) {
+        this.activationKey = activationKey;
     }
 
     /**
