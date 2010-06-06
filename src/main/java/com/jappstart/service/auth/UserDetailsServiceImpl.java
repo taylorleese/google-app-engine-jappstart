@@ -82,7 +82,6 @@ public class UserDetailsServiceImpl implements EnhancedUserDetailsService {
      *
      * @param user the user
      */
-    @SuppressWarnings("unchecked")
     @Override
     @Transactional
     public final void addUser(final UserAccount user) {
@@ -90,6 +89,7 @@ public class UserDetailsServiceImpl implements EnhancedUserDetailsService {
             "SELECT u FROM UserAccount u WHERE username = :username");
         query.setParameter("username", user.getUsername());
 
+        @SuppressWarnings("unchecked")
         final List results = query.getResultList();
         if (results != null && !results.isEmpty()) {
             throw new DuplicateUserException();
