@@ -46,8 +46,7 @@
         <beans:property name="hierarchy">
             <beans:value>
                 ROLE_ADMIN > ROLE_USER
-                ROLE_USER >
-                ROLE_ANONYMOUS
+                ROLE_USER > ROLE_ANONYMOUS
             </beans:value>
         </beans:property>
     </beans:bean>
