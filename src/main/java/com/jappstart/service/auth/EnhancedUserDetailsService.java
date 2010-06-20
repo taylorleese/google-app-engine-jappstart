@@ -35,6 +35,14 @@ public interface EnhancedUserDetailsService extends UserDetailsService {
     void addUser(final UserAccount user);
 
     /**
+     * Returns the user account for the given username.
+     *
+     * @param username the username
+     * @return the user account
+     */
+    UserAccount getUser(final String username);
+
+    /**
      * Activates the user with the given activation key.
      *
      * @param key the activation key

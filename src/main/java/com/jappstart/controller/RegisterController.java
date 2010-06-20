@@ -214,8 +214,6 @@ public class RegisterController {
             return "create";
         }
 
-        mailService.sendActivationEmail(user);
-
         return "redirect:/register/success";
     }
 

@@ -12,6 +12,7 @@
         <intercept-url pattern="/admin/**" access="hasRole('ROLE_ANONYMOUS')" requires-channel="http" />
         <intercept-url pattern="/appstats/**" access="hasRole('ROLE_ANONYMOUS')" requires-channel="http" />
         <intercept-url pattern="/remote_api" access="hasRole('ROLE_ANONYMOUS')" requires-channel="http" />
+        <intercept-url pattern="/task/**" access="hasRole('ROLE_ANONYMOUS')" requires-channel="http" />
         <intercept-url pattern="/login/**" access="hasRole('ROLE_ANONYMOUS')" requires-channel="${application.secureChannel}" />
         <intercept-url pattern="/error/**" access="hasRole('ROLE_ANONYMOUS')" requires-channel="http" />
         <intercept-url pattern="/register/**" access="hasRole('ROLE_ANONYMOUS')" requires-channel="${application.secureChannel}" />
@@ -27,7 +28,10 @@
         <beans:property name="passwordParameter" value="password" />
     </beans:bean>
 
-    <beans:bean id="userDetailsService" class="com.jappstart.service.auth.UserDetailsServiceImpl" />
+    <beans:bean id="userDetailsService" class="com.jappstart.service.auth.UserDetailsServiceImpl">
+        <beans:property name="mailTaskName" value="mail" />
+        <beans:property name="mailTaskUrl" value="/task/mail/activate" />
+    </beans:bean>
 
     <authentication-manager alias="authenticationManager">
         <authentication-provider user-service-ref="userDetailsService">

@@ -31,8 +31,6 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
@@ -44,18 +42,6 @@ import com.jappstart.model.auth.UserAccount;
  */
 @Service
 public class MailService {
-
-    /**
-     * The logger.
-     */
-    private static final Logger LOGGER =
-        LoggerFactory.getLogger(MailService.class);
-
-    /**
-     * The error message.
-     */
-    private static final String ERROR_MSG =
-        "Error sending activation e-mail.";
 
     /**
      * The from address.
@@ -130,8 +116,10 @@ public class MailService {
      * Sends the activation e-mail to the given user.
      *
      * @param user the user
+     * @throws MessagingException the message exception 
      */
-    public final void sendActivationEmail(final UserAccount user) {
+    public final void sendActivationEmail(final UserAccount user)
+        throws MessagingException {
         final Properties props = new Properties();
         final Session session = Session.getDefaultInstance(props, null);
         final Message message = new MimeMessage(session);
@@ -140,31 +128,27 @@ public class MailService {
         final MimeBodyPart textPart = new MimeBodyPart();
         final Locale locale = LocaleContextHolder.getLocale();
 
-        try {
-            message.setFrom(new InternetAddress(getFromAddress()));
+        message.setFrom(new InternetAddress(getFromAddress()));
 
-            message.addRecipient(Message.RecipientType.TO,
-                new InternetAddress(user.getUsername()));
+        message.addRecipient(Message.RecipientType.TO,
+            new InternetAddress(user.getUsername()));
 
-            message.setSubject(messageSource.getMessage("mail.subject", null,
-                locale));
+        message.setSubject(messageSource.getMessage("mail.subject", null,
+            locale));
 
-            textPart.setContent(messageSource.getMessage("mail.body.txt",
-                new Object[] {getHostname(), user.getActivationKey()}, locale),
-                "text/plain");
+        textPart.setContent(messageSource.getMessage("mail.body.txt",
+            new Object[] {getHostname(), user.getActivationKey()}, locale),
+            "text/plain");
 
-            htmlPart.setContent(messageSource.getMessage("mail.body.html",
-                new Object[] {getHostname(), user.getActivationKey()}, locale),
-                "text/html");
+        htmlPart.setContent(messageSource.getMessage("mail.body.html",
+            new Object[] {getHostname(), user.getActivationKey()}, locale),
+            "text/html");
 
-            multipart.addBodyPart(textPart);
-            multipart.addBodyPart(htmlPart);
-            message.setContent(multipart);
+        multipart.addBodyPart(textPart);
+        multipart.addBodyPart(htmlPart);
+        message.setContent(multipart);
 
-            Transport.send(message);
-        } catch (MessagingException e) {
-            LOGGER.warn(ERROR_MSG, e);
-        }
+        Transport.send(message);
     }
 
 }

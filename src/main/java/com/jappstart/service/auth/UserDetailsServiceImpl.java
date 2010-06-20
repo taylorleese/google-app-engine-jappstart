@@ -31,6 +31,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.labs.taskqueue.Queue;
+import com.google.appengine.api.labs.taskqueue.QueueFactory;
+import com.google.appengine.api.labs.taskqueue.TaskOptions;
 import com.jappstart.exception.DuplicateUserException;
 import com.jappstart.model.auth.UserAccount;
 
@@ -40,11 +44,62 @@ import com.jappstart.model.auth.UserAccount;
 @Service
 public class UserDetailsServiceImpl implements EnhancedUserDetailsService {
 
+	/**
+     * The username field name.
+     */
+    private static final String USERNAME = "username";
+
     /**
      * The entity manager.
      */
     @PersistenceContext
     private transient EntityManager entityManager;
+
+    /**
+     * The mail task name.
+     */
+    private String mailTaskName;
+
+    /**
+     * The mail task URL.
+     */
+    private String mailTaskUrl;
+
+    /**
+     * Returns the mail task name.
+     *
+     * @return the mail task name
+     */
+    public final String getMailTaskName() {
+        return mailTaskName;
+    }
+
+    /**
+     * Sets the mail task name.
+     *
+     * @param mailTaskName the mail task name
+     */
+    public final void setMailTaskName(final String mailTaskName) {
+        this.mailTaskName = mailTaskName;
+    }
+
+    /**
+     * Returns the mail task URL.
+     *
+     * @return the mail task URL
+     */
+    public final String getMailTaskUrl() {
+        return mailTaskUrl;
+    }
+
+    /**
+     * Sets the mail task URL.
+     *
+     * @param mailTaskUrl the mail task URL
+     */
+    public final void setMailTaskUrl(final String mailTaskUrl) {
+        this.mailTaskUrl = mailTaskUrl;
+    }
 
     /**
      * Locates the user based on the username.
@@ -78,6 +133,25 @@ public class UserDetailsServiceImpl implements EnhancedUserDetailsService {
     }
 
     /**
+     * Returns the user account for the given username.
+     *
+     * @param username the username
+     * @return the user account
+     */
+    @Override
+    public final UserAccount getUser(final String username) {
+        final Query query = entityManager.createQuery(
+            "SELECT u FROM UserAccount u WHERE username = :username");
+        query.setParameter(USERNAME, username);
+
+        try {
+            return (UserAccount) query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    /**
      * Adds a user.
      *
      * @param user the user
@@ -87,7 +161,7 @@ public class UserDetailsServiceImpl implements EnhancedUserDetailsService {
     public final void addUser(final UserAccount user) {
         final Query query = entityManager.createQuery(
             "SELECT u FROM UserAccount u WHERE username = :username");
-        query.setParameter("username", user.getUsername());
+        query.setParameter(USERNAME, user.getUsername());
 
         @SuppressWarnings("unchecked")
         final List results = query.getResultList();
@@ -96,6 +170,14 @@ public class UserDetailsServiceImpl implements EnhancedUserDetailsService {
         }
 
         entityManager.persist(user);
+
+        final TaskOptions taskOptions =
+            TaskOptions.Builder.url(mailTaskUrl)
+            .param("username", user.getUsername());
+
+        final Queue queue = QueueFactory.getQueue(mailTaskName);
+        queue.add(DatastoreServiceFactory.getDatastoreService()
+            .getCurrentTransaction(), taskOptions);
     }
 
     /**
