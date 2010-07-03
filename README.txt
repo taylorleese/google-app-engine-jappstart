@@ -1,5 +1,12 @@
 Copyright (C) 2010 Taylor Leese (tleese22@gmail.com)
 
+jappstart is a Java framework for Google App Engine built on Spring,
+Spring Security, and Sitemesh. The project aims to be the starting
+point for Google App Engine Java applications. It's not a framework
+in the traditional sense -- rather it is designed to provide a solid
+foundation for GAE/Java applications that can be easily extended by
+developers.
+
 jappstart is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
