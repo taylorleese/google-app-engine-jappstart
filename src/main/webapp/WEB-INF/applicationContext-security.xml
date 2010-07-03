@@ -11,7 +11,7 @@
         <intercept-url pattern="/_ah/**" access="hasRole('ROLE_ANONYMOUS')" requires-channel="http" />
         <intercept-url pattern="/admin/**" access="hasRole('ROLE_ANONYMOUS')" requires-channel="http" />
         <intercept-url pattern="/appstats/**" access="hasRole('ROLE_ANONYMOUS')" requires-channel="http" />
-        <intercept-url pattern="/remote_api" access="hasRole('ROLE_ANONYMOUS')" requires-channel="http" />
+        <intercept-url pattern="/remote_api" access="hasRole('ROLE_ANONYMOUS')" requires-channel="https" />
         <intercept-url pattern="/task/**" access="hasRole('ROLE_ANONYMOUS')" requires-channel="http" />
         <intercept-url pattern="/login/**" access="hasRole('ROLE_ANONYMOUS')" requires-channel="${application.secureChannel}" />
         <intercept-url pattern="/error/**" access="hasRole('ROLE_ANONYMOUS')" requires-channel="http" />
@@ -29,8 +29,10 @@
     </beans:bean>
 
     <beans:bean id="userDetailsService" class="com.jappstart.service.auth.UserDetailsServiceImpl">
+        <beans:property name="datastoreService" ref="datastoreService" />
         <beans:property name="mailTaskName" value="mail" />
         <beans:property name="mailTaskUrl" value="/task/mail/activate" />
+        <beans:property name="memcacheService" ref="memcacheServiceUser" />
     </beans:bean>
 
     <authentication-manager alias="authenticationManager">
@@ -69,7 +71,9 @@
         </beans:property>
     </beans:bean>
 
-    <beans:bean id="persistentTokenRepository" class="com.jappstart.service.auth.PersistentTokenRepositoryImpl" />
+    <beans:bean id="persistentTokenRepository" class="com.jappstart.service.auth.PersistentTokenRepositoryImpl">
+        <beans:property name="memcacheService" ref="memcacheServiceUser" />
+    </beans:bean>
 
     <beans:bean id="rememberMeServices" class="org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices">
         <beans:property name="userDetailsService" ref="userDetailsService" />

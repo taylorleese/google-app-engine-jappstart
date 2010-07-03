@@ -131,7 +131,7 @@ public class MailService {
         message.setFrom(new InternetAddress(getFromAddress()));
 
         message.addRecipient(Message.RecipientType.TO,
-            new InternetAddress(user.getUsername()));
+            new InternetAddress(user.getEmail()));
 
         message.setSubject(messageSource.getMessage("mail.subject", null,
             locale));

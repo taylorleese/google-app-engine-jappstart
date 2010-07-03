@@ -10,14 +10,14 @@
             <fieldset>      
                 <legend><spring:message code="create.legend" /></legend>
                 <p>
-                    <form:label for="firstName" path="firstName" cssErrorClass="error"><spring:message code="create.label.firstName" /></form:label>
-                    <form:input path="firstName" />
-                    <form:errors path="firstName" cssClass="error" />          
+                    <form:label for="displayName" path="displayName" cssErrorClass="error"><spring:message code="create.label.displayName" /></form:label>
+                    <form:input path="displayName" />
+                    <form:errors path="displayName" cssClass="error" />         
                 </p>
                 <p> 
-                    <form:label for="lastName" path="lastName" cssErrorClass="error"><spring:message code="create.label.lastName" /></form:label>
-                    <form:input path="lastName" />
-                    <form:errors path="lastName" cssClass="error" />
+                    <form:label for="username" path="username" cssErrorClass="error"><spring:message code="create.label.username" /></form:label>
+                    <form:input path="username" />
+                    <form:errors path="username" cssClass="error" />
                 </p>
                 <p>
                     <form:label for="email" path="email" cssErrorClass="error"><spring:message code="create.label.email" /></form:label>

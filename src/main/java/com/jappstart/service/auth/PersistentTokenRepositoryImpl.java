@@ -36,6 +36,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.memcache.Expiration;
+import com.google.appengine.api.memcache.MemcacheService;
 import com.jappstart.model.auth.PersistentLogin;
 import com.jappstart.model.auth.PersistentUser;
 import com.jappstart.model.auth.UserAccount;
@@ -48,6 +50,11 @@ public class PersistentTokenRepositoryImpl
     implements PersistentTokenRepository {
 
     /**
+     * The default cache expiration in seconds.
+     */
+    private static final int DEFAULT_EXPIRATION = 3600;
+
+    /**
      * The logger.
      */
     private static final Logger LOGGER =
@@ -58,6 +65,30 @@ public class PersistentTokenRepositoryImpl
      */
     @PersistenceContext
     private transient EntityManager entityManager;
+
+    /**
+     * The memcache service.
+     */
+    private MemcacheService memcacheService;
+
+    /**
+     * Returns the memcache service.
+     *
+     * @return the memcache service
+     */
+    public final MemcacheService getMemcacheService() {
+        return memcacheService;
+    }
+
+    /**
+     * Sets the memcache service.
+     *
+     * @param memcacheService the memcache service
+     */
+    public final void setMemcacheService(
+        final MemcacheService memcacheService) {
+        this.memcacheService = memcacheService;
+    }
 
     /**
      * Creates a new remember me token.
@@ -86,6 +117,9 @@ public class PersistentTokenRepositoryImpl
             createPersistentLogin(user.getPersistentUser().getKey(), token));
 
         entityManager.persist(user);
+
+        memcacheService.put(user.getUsername(), user,
+            Expiration.byDeltaSeconds(DEFAULT_EXPIRATION));
     }
 
     /**
@@ -97,12 +131,16 @@ public class PersistentTokenRepositoryImpl
     @Override
     public final PersistentRememberMeToken getTokenForSeries(
         final String series) {
+        PersistentLogin persistentLogin = null;
         final Query query = entityManager.createQuery(
             "SELECT p FROM PersistentLogin p WHERE series = :series");
         query.setParameter("series", series);
 
-        final PersistentLogin persistentLogin =
-            (PersistentLogin) query.getSingleResult();
+        try {
+            persistentLogin = (PersistentLogin) query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
 
         return new PersistentRememberMeToken(
             persistentLogin.getUsername(),

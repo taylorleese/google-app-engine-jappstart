@@ -42,7 +42,7 @@
 
     <admin-console>
         <page name="Admin" url="/admin" />
-        <page name="Appstats" url="/appstats/stats" />
+        <page name="Appstats" url="/appstats" />
     </admin-console>
 
 </appengine-web-app>

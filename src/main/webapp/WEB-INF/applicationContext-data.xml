@@ -35,4 +35,12 @@
         <property name="entityManagerFactory" ref="entityManagerFactory" />
     </bean>
 
+    <bean id="datastoreService" class="com.google.appengine.api.datastore.DatastoreServiceFactory"
+        factory-method="getDatastoreService" />
+
+    <bean id="memcacheServiceUser" class="com.google.appengine.api.memcache.MemcacheServiceFactory"
+        factory-method="getMemcacheService">
+        <constructor-arg value="UserCache"/>
+    </bean> 
+
 </beans>

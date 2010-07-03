@@ -29,16 +29,16 @@ import javax.validation.constraints.Pattern;
 public class Register implements Serializable {
 
     /**
-     * First name.
+     * Display name.
      */
     @Pattern(regexp = ".+")
-    private String firstName;
+    private String displayName;
 
     /**
-     * Last name.
+     * The username.
      */
     @Pattern(regexp = ".+")
-    private String lastName;
+    private String username;
 
     /**
      * The e-mail address.
@@ -53,46 +53,46 @@ public class Register implements Serializable {
     private String password;
 
     /**
-     * Sets the first name.
+     * Sets the display name.
      *
-     * @param firstName the first name
+     * @param displayName the display name
      */
     /* CHECKSTYLE:OFF */
-    public void setFirstName(final String firstName) {
-        this.firstName = firstName;
+    public void setDisplayName(final String displayName) {
+        this.displayName = displayName;
     }
     /* CHECKSTYLE:ON */
 
     /**
-     * Gets the first name.
+     * Gets the display name.
      *
-     * @return the first name
+     * @return the display name
      */
     /* CHECKSTYLE:OFF */
-    public String getFirstName() {
-        return firstName;
+    public String getDisplayName() {
+        return displayName;
     }
     /* CHECKSTYLE:ON */
 
     /**
-     * Sets the last name.
+     * Sets the username.
      *
-     * @param lastName the last name
+     * @param username the username
      */
     /* CHECKSTYLE:OFF */
-    public void setLastName(final String lastName) {
-        this.lastName = lastName;
+    public void setUsername(final String username) {
+        this.username = username;
     }
     /* CHECKSTYLE:ON */
 
     /**
-     * Gets the last name.
+     * Gets the username.
      *
-     * @return the last name
+     * @return the username
      */
     /* CHECKSTYLE:OFF */
-    public String getLastName() {
-        return lastName;
+    public String getUsername() {
+        return username;
     }
     /* CHECKSTYLE:ON */
 

@@ -199,9 +199,9 @@ public class RegisterController {
             return "create";
         }
 
-        final UserAccount user = new UserAccount(register.getEmail());
-        user.setFirstName(register.getFirstName());
-        user.setLastName(register.getLastName());
+        final UserAccount user = new UserAccount(register.getUsername());
+        user.setDisplayName(register.getDisplayName());
+        user.setEmail(register.getEmail()); 
         user.setPassword(passwordEncoder.encodePassword(
             register.getPassword(), user.getSalt()));
 

@@ -18,6 +18,7 @@
  */
 package com.jappstart.model.auth;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -33,9 +34,10 @@ import com.google.appengine.api.datastore.KeyFactory;
 /**
  * The persistent login entity class.
  */
+@SuppressWarnings("serial")
 @Repository
 @Entity
-public class PersistentLogin {
+public class PersistentLogin implements Serializable {
 
     /**
      * The key.

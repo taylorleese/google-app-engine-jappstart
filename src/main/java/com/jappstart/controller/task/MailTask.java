@@ -31,7 +31,7 @@ import com.jappstart.service.auth.EnhancedUserDetailsService;
 import com.jappstart.service.mail.MailService;
 
 /**
- * The registration controller.
+ * The mail task controller.
  */
 @Controller
 @RequestMapping("/task/mail")

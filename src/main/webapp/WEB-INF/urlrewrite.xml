@@ -20,8 +20,8 @@
 <!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 3.0//EN" "http://tuckey.org/res/dtds/urlrewrite3.0.dtd">
 <urlrewrite>
     <rule>
-        <from>^/appstats/(.*)$</from>
-        <to last="true">/appstats/$1</to>
+        <from>^/appstats(.*)$</from>
+        <to last="true">/appstats$1</to>
     </rule>
     <rule>
         <from>^/remote_api$</from>

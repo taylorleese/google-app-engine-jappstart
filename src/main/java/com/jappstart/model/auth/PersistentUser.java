@@ -18,6 +18,7 @@
  */
 package com.jappstart.model.auth;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.CascadeType;
@@ -35,9 +36,10 @@ import com.google.appengine.api.datastore.KeyFactory;
 /**
  * The persistent user entity class.
  */
+@SuppressWarnings("serial")
 @Repository
 @Entity
-public class PersistentUser {
+public class PersistentUser implements Serializable {
 
     /**
      * The key.

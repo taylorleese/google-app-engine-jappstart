@@ -18,6 +18,7 @@
  */
 package com.jappstart.model.auth;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 import javax.persistence.CascadeType;
@@ -34,9 +35,10 @@ import com.google.appengine.api.datastore.KeyFactory;
 /**
  * The user account entity class.
  */
+@SuppressWarnings("serial")
 @Repository
 @Entity
-public class UserAccount {
+public class UserAccount implements Serializable {
 
     /**
      * The key.
@@ -50,14 +52,14 @@ public class UserAccount {
     private String username;
 
     /**
-     * The first name.
+     * The e-mail address.
      */
-    private String firstName;
+    private String email;
 
     /**
-     * The last name.
+     * The display name.
      */
-    private String lastName;
+    private String displayName;
 
     /**
      * The password.
@@ -159,39 +161,39 @@ public class UserAccount {
     }
 
     /**
-     * Gets the first name.
+     * Returns the email.
      *
-     * @return the first name
+     * @return the email
      */
-    public final String getFirstName() {
-        return firstName;
+    public final String getEmail() {
+        return email;
     }
 
     /**
-     * Sets the first name.
+     * Sets the email.
      *
-     * @param firstName the first name
+     * @param email the email
      */
-    public final void setFirstName(final String firstName) {
-        this.firstName = firstName;
+    public final void setEmail(final String email) {
+        this.email = email;
     }
 
     /**
-     * Gets the last name.
+     * Gets the display name.
      *
-     * @return the last name
+     * @return the display name
      */
-    public final String getLastName() {
-        return lastName;
+    public final String getDisplayName() {
+        return displayName;
     }
 
     /**
-     * Sets the last name.
+     * Sets the display name.
      *
-     * @param lastName the last name
+     * @param displayName the display name
      */
-    public final void setLastName(final String lastName) {
-        this.lastName = lastName;
+    public final void setDisplayName(final String displayName) {
+        this.displayName = displayName;
     }
 
     /**
