@@ -18,6 +18,8 @@
  */
 package com.jappstart.service.auth;
 
+import java.util.Locale;
+
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import com.jappstart.model.auth.UserAccount;
@@ -31,8 +33,9 @@ public interface EnhancedUserDetailsService extends UserDetailsService {
      * Adds a user.
      *
      * @param user the user
+     * @param locale the locale
      */
-    void addUser(final UserAccount user);
+    void addUser(final UserAccount user, final Locale locale);
 
     /**
      * Returns the user account for the given username.

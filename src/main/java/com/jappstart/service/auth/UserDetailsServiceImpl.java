@@ -20,6 +20,8 @@ package com.jappstart.service.auth;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -39,6 +41,8 @@ import com.google.appengine.api.memcache.Expiration;
 import com.google.appengine.api.memcache.MemcacheService;
 import com.jappstart.exception.DuplicateUserException;
 import com.jappstart.model.auth.UserAccount;
+import com.jappstart.service.auth.EnhancedUser;
+import com.jappstart.service.auth.EnhancedUserDetailsService;
 
 /**
  * The user details service implementation.
@@ -224,10 +228,11 @@ public class UserDetailsServiceImpl implements EnhancedUserDetailsService {
      * Adds a user.
      *
      * @param user the user
+     * @param locale the locale
      */
     @Override
     @Transactional
-    public final void addUser(final UserAccount user) {
+    public final void addUser(final UserAccount user, final Locale locale) {
         final UserAccount cachedUser = (UserAccount) memcacheService.get(
             user.getUsername());
 
@@ -252,7 +257,8 @@ public class UserDetailsServiceImpl implements EnhancedUserDetailsService {
 
         final TaskOptions taskOptions =
             TaskOptions.Builder.url(mailTaskUrl)
-            .param("username", user.getUsername());
+            .param("username", user.getUsername())
+            .param("locale", locale.toString());
 
         final Queue queue = QueueFactory.getQueue(mailTaskName);
         queue.add(datastoreService.getCurrentTransaction(), taskOptions);

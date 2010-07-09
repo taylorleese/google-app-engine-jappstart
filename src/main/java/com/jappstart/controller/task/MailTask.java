@@ -90,14 +90,15 @@ public class MailTask {
      * Sends the activation e-mail.
      *
      * @param username the username
+     * @param locale the locale
      * @param response the servlet response
      */
     @RequestMapping(value = "/activate", method = RequestMethod.POST)
     public final void sendActivationMail(@RequestParam final String username,
-        final HttpServletResponse response) {
+        @RequestParam final String locale, final HttpServletResponse response) {
         try {
             mailService.sendActivationEmail(
-                userDetailsService.getUser(username));
+                userDetailsService.getUser(username), locale);
         } catch (MessagingException e) {
             response.setStatus(
                 HttpServletResponse.SC_INTERNAL_SERVER_ERROR);

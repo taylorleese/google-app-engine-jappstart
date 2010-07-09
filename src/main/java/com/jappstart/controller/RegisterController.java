@@ -18,11 +18,13 @@
  */
 package com.jappstart.controller;
 
+import java.util.Locale;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -33,12 +35,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.LocaleResolver;
 
 import com.jappstart.exception.DuplicateUserException;
 import com.jappstart.form.Register;
 import com.jappstart.model.auth.UserAccount;
 import com.jappstart.service.auth.EnhancedUserDetailsService;
 import com.jappstart.service.mail.MailService;
+import com.jappstart.controller.RegisterController;
 
 /**
  * The registration controller.
@@ -67,6 +71,11 @@ public class RegisterController {
      * The mail service.
      */
     private MailService mailService;
+
+    /**
+     * The locale resolver.
+     */
+    private LocaleResolver localeResolver;
 
     /**
      * The message source.
@@ -133,6 +142,25 @@ public class RegisterController {
     }
 
     /**
+     * Gets the locale resolver.
+     *
+     * @return the locale resolver
+     */
+    public final LocaleResolver getLocaleResolver() {
+        return localeResolver;
+    }
+
+    /**
+     * Sets the locale resolver.
+     *
+     * @param localeResolver the locale resolver
+     */
+    @Autowired
+    public final void setLocaleResolver(final LocaleResolver localeResolver) {
+        this.localeResolver = localeResolver;
+    }
+
+    /**
      * Gets the message source.
      *
      * @return the message source
@@ -188,12 +216,14 @@ public class RegisterController {
      *
      * @param register the register form bean
      * @param binding the binding result
+     * @param request the HTTP servlet request
      * @return the path
      */
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public final String submit(
         @ModelAttribute(REGISTER) @Valid final Register register,
-        final BindingResult binding) {
+        final BindingResult binding, final HttpServletRequest request) {
+        final Locale locale = localeResolver.resolveLocale(request);
 
         if (binding.hasErrors()) {
             return "create";
@@ -201,16 +231,16 @@ public class RegisterController {
 
         final UserAccount user = new UserAccount(register.getUsername());
         user.setDisplayName(register.getDisplayName());
-        user.setEmail(register.getEmail()); 
+        user.setEmail(register.getEmail());
         user.setPassword(passwordEncoder.encodePassword(
             register.getPassword(), user.getSalt()));
 
         try {
-            userDetailsService.addUser(user);
+            userDetailsService.addUser(user, locale);
         } catch (DuplicateUserException e) {
-            binding.addError(new FieldError(REGISTER, "email",
+            binding.addError(new FieldError(REGISTER, "username",
                 messageSource.getMessage("create.error.username", null,
-                    LocaleContextHolder.getLocale())));
+                    locale)));
             return "create";
         }
 

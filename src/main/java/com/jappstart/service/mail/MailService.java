@@ -32,7 +32,6 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.jappstart.model.auth.UserAccount;
@@ -47,12 +46,10 @@ public class MailService {
      * The from address.
      */
     private String fromAddress;
-
     /**
      * The hostname.
      */
     private String hostname;
-
     /**
      * The message source.
      */
@@ -116,9 +113,11 @@ public class MailService {
      * Sends the activation e-mail to the given user.
      *
      * @param user the user
-     * @throws MessagingException the message exception 
+     * @param locale the locale
+     * @throws MessagingException messaging exception
      */
-    public final void sendActivationEmail(final UserAccount user)
+    public final void sendActivationEmail(final UserAccount user,
+        final String locale)
         throws MessagingException {
         final Properties props = new Properties();
         final Session session = Session.getDefaultInstance(props, null);
@@ -126,23 +125,21 @@ public class MailService {
         final Multipart multipart = new MimeMultipart();
         final MimeBodyPart htmlPart = new MimeBodyPart();
         final MimeBodyPart textPart = new MimeBodyPart();
-        final Locale locale = LocaleContextHolder.getLocale();
 
         message.setFrom(new InternetAddress(getFromAddress()));
-
         message.addRecipient(Message.RecipientType.TO,
             new InternetAddress(user.getEmail()));
 
         message.setSubject(messageSource.getMessage("mail.subject", null,
-            locale));
+            new Locale(locale)));
 
         textPart.setContent(messageSource.getMessage("mail.body.txt",
-            new Object[] {getHostname(), user.getActivationKey()}, locale),
-            "text/plain");
+            new Object[] {getHostname(), user.getActivationKey()},
+            new Locale(locale)), "text/plain");
 
         htmlPart.setContent(messageSource.getMessage("mail.body.html",
-            new Object[] {getHostname(), user.getActivationKey()}, locale),
-            "text/html");
+            new Object[] {getHostname(), user.getActivationKey()},
+            new Locale(locale)), "text/html");
 
         multipart.addBodyPart(textPart);
         multipart.addBodyPart(htmlPart);
