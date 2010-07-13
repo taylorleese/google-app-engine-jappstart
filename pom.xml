@@ -373,7 +373,7 @@
             <plugin>
                 <groupId>net.kindleit</groupId>
                 <artifactId>maven-gae-plugin</artifactId>
-                <version>0.6.0-SNAPSHOT</version>
+                <version>0.6.0</version>
                 <configuration>
                     <jvmFlags>
                         <jvmFlag>-Xdebug</jvmFlag>
