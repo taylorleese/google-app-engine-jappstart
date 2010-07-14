@@ -17,14 +17,17 @@
     You should have received a copy of the GNU General Public License
     along with jappstart.  If not, see <http://www.gnu.org/licenses />.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+        http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.jappstart</groupId>
     <artifactId>jappstart-web</artifactId>
     <packaging>war</packaging>
     <name>jappstart</name>
-    <version>0.0.1</version>
+    <version>0.0.1-SNAPSHOT</version>
     <inceptionYear>2010</inceptionYear>
     <url>http://jappstart.com</url>
 
@@ -65,9 +68,10 @@
     </issueManagement>
 
     <scm>
-        <connection>scm:git:git@github.com:tleese22/google-app-engine-jappstart.git</connection>
+        <connection>scm:git:git://github.com/tleese22/google-app-engine-jappstart.git</connection>
         <developerConnection>scm:git:git@github.com:tleese22/google-app-engine-jappstart.git</developerConnection>
-        <url>scm:git:git@github.com:tleese22/google-app-engine-jappstart.git</url>
+        <url>http://github.com/tleese22/google-app-engine-jappstart</url>
+        <tag>master</tag>
     </scm>
 
     <properties>
