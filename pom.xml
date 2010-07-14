@@ -24,7 +24,7 @@
     <artifactId>jappstart-web</artifactId>
     <packaging>war</packaging>
     <name>jappstart</name>
-    <version>0.0.1</version>
+    <version>0.0.1-SNAPSHOT</version>
     <inceptionYear>2010</inceptionYear>
     <url>http://jappstart.com</url>
 
@@ -65,9 +65,9 @@
     </issueManagement>
 
     <scm>
-        <connection>scm:git:git://github.com/tleese22/jappstart.git</connection>
-        <developerConnection>scm:git:git@github.com:tleese22/jappstart.git</developerConnection>
-        <url>http://github.com/tleese22/jappstart</url>
+        <connection>scm:git:git://github.com/tleese22/google-app-engine-jappstart.git</connection>
+        <developerConnection>scm:git:git@github.com:tleese22/google-app-engine-jappstart.git</developerConnection>
+        <url>http://jappstart.com</url>
     </scm>
 
     <properties>
