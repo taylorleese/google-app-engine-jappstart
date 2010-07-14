@@ -68,7 +68,6 @@
         <connection>scm:git:git://github.com/tleese22/google-app-engine-jappstart.git</connection>
         <developerConnection>scm:git:git@github.com:tleese22/google-app-engine-jappstart.git</developerConnection>
         <url>http://github.com/tleese22/google-app-engine-jappstart</url>
-        <tag>master</tag>
     </scm>
 
     <properties>
