@@ -115,11 +115,11 @@
     <distributionManagement>
         <repository>
             <id>googlecode.jappstart.release</id>
-            <url>https://jappstart.googlecode.com/svn/maven-repository/</url>
+            <url>https://jappstart.googlecode.com/svn/maven-repo/releases</url>
         </repository>
         <snapshotRepository>
             <id>googlecode.jappstart.snapshot</id>
-            <url>https://jappstart.googlecode.com/svn/maven-snapshot-repository/</url>
+            <url>https://jappstart.googlecode.com/svn/maven-repo/snapshots</url>
             <uniqueVersion>false</uniqueVersion>
         </snapshotRepository>
     </distributionManagement>
