@@ -115,11 +115,11 @@
     <distributionManagement>
         <repository>
             <id>googlecode.jappstart.release</id>
-            <url>https://jappstart.googlecode.com/svn/maven-repo/releases</url>
+            <url>dav:https://jappstart.googlecode.com/svn/maven-repo/releases</url>
         </repository>
         <snapshotRepository>
             <id>googlecode.jappstart.snapshot</id>
-            <url>https://jappstart.googlecode.com/svn/maven-repo/snapshots</url>
+            <url>dav:https://jappstart.googlecode.com/svn/maven-repo/snapshots</url>
             <uniqueVersion>false</uniqueVersion>
         </snapshotRepository>
     </distributionManagement>
@@ -441,6 +441,13 @@
                 <version>2.0</version>
             </plugin>
         </plugins>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-webdav-jackrabbit</artifactId>
+                <version>1.0-beta-6</version>
+            </extension>
+        </extensions>
     </build>
 
     <profiles>
