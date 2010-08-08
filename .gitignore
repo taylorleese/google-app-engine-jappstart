@@ -1,1 +1,9 @@
 /target
+/checkstyle.xml
+/.settings
+/.classpath
+/.fbprefs
+/.pmd
+/.project
+/.springBeans
+/release.properties
