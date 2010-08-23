@@ -42,7 +42,6 @@ import com.jappstart.form.Register;
 import com.jappstart.model.auth.UserAccount;
 import com.jappstart.service.auth.EnhancedUserDetailsService;
 import com.jappstart.service.mail.MailService;
-import com.jappstart.controller.RegisterController;
 
 /**
  * The registration controller.

@@ -41,8 +41,6 @@ import com.google.appengine.api.memcache.Expiration;
 import com.google.appengine.api.memcache.MemcacheService;
 import com.jappstart.exception.DuplicateUserException;
 import com.jappstart.model.auth.UserAccount;
-import com.jappstart.service.auth.EnhancedUser;
-import com.jappstart.service.auth.EnhancedUserDetailsService;
 
 /**
  * The user details service implementation.
