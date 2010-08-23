@@ -77,7 +77,7 @@
         <gae.home>${user.home}/.m2/repository/com/google/appengine/appengine-java-sdk/${gae.version}/appengine-java-sdk-${gae.version}</gae.home>
         <maven.gae.plugin.version>0.6.0</maven.gae.plugin.version>
         <datanucleus.version>1.1.5</datanucleus.version>
-        <springframework.version>3.0.3.RELEASE</springframework.version>
+        <springframework.version>3.0.4.RELEASE</springframework.version>
         <springframework.security.version>3.0.3.RELEASE</springframework.security.version>
         <slf4j.version>1.5.11</slf4j.version>
     </properties>
@@ -89,14 +89,9 @@
             <url>http://maven-gae-plugin.googlecode.com/svn/repository</url>
         </repository>
         <repository>
-            <id>spring-snapshot-repo</id>
-            <name>spring snapshot repository</name>
-            <url>http://maven.springframework.org/snapshot</url>
-        </repository>
-        <repository>
             <id>jboss-repo</id>
             <name>jboss repository</name>
-            <url>http://repository.jboss.com/maven2</url>
+            <url>https://repository.jboss.org/nexus/content/groups/public</url>
         </repository>
     </repositories>
 
@@ -181,7 +176,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>4.0.2.GA</version>
+            <version>4.1.0.Final</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -432,8 +427,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.1</version>
                 <configuration>
-                    <source>1.5</source>
-                    <target>1.5</target>
+                    <source>1.6</source>
+                    <target>1.6</target>
                 </configuration>
             </plugin>
             <plugin>
