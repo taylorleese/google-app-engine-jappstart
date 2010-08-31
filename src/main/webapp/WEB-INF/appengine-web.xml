@@ -45,4 +45,11 @@
         <page name="Appstats" url="/appstats" />
     </admin-console>
 
+    <static-error-handlers>
+        <handler file="/html/error.html"/>
+        <handler file="/html/over_quota.html" error-code="over_quota"/>
+        <handler file="/html/dos_api_denial.html" error-code="dos_api_denial"/>
+        <handler file="/html/timeout.html" error-code="timeout"/>
+    </static-error-handlers>
+
 </appengine-web-app>
