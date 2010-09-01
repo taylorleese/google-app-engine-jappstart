@@ -84,11 +84,6 @@
 
     <repositories>
         <repository>
-            <id>maven-gae-repo</id>
-            <name>maven gae repository</name>
-            <url>http://maven-gae-plugin.googlecode.com/svn/repository</url>
-        </repository>
-        <repository>
             <id>jboss-repo</id>
             <name>jboss repository</name>
             <url>https://repository.jboss.org/nexus/content/groups/public</url>
@@ -96,11 +91,6 @@
     </repositories>
 
     <pluginRepositories>
-        <pluginRepository>
-            <id>maven-gae-plugin-repo</id>
-            <name>maven gae plugin repository</name>
-            <url>http://maven-gae-plugin.googlecode.com/svn/repository</url>
-        </pluginRepository>
         <pluginRepository>
             <id>sonatype-plugin-repo</id>
             <name>sonatype plugin repository</name>
@@ -156,7 +146,7 @@
 
         <!-- Runtime Scope -->
         <dependency>
-            <groupId>com.google.appengine</groupId>
+            <groupId>org.datanucleus</groupId>
             <artifactId>datanucleus-jpa</artifactId>
             <version>${datanucleus.version}</version>
             <scope>runtime</scope>
@@ -222,20 +212,20 @@
         <dependency>
             <groupId>com.google.appengine.orm</groupId>
             <artifactId>datanucleus-appengine</artifactId>
-            <version>1.0.7.final</version>
+            <version>1.0.7</version>
         </dependency>
         <dependency>
-            <groupId>com.google.appengine</groupId>
+            <groupId>org.apache.geronimo.specs</groupId>
             <artifactId>geronimo-jpa_3.0_spec</artifactId>
             <version>1.1.1</version>
         </dependency>
         <dependency>
-            <groupId>com.google.appengine</groupId>
+            <groupId>org.apache.geronimo.specs</groupId>
             <artifactId>geronimo-jta_1.1_spec</artifactId>
             <version>1.1.1</version>
         </dependency>
         <dependency>
-            <groupId>com.google.appengine</groupId>
+            <groupId>javax.jdo</groupId>
             <artifactId>jdo2-api</artifactId>
             <version>2.3-eb</version>
             <exclusions>
