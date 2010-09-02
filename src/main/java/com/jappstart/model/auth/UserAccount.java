@@ -19,6 +19,9 @@
 package com.jappstart.model.auth;
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
 
 import javax.persistence.CascadeType;
@@ -27,6 +30,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import org.springframework.security.core.codec.Hex;
 import org.springframework.stereotype.Repository;
 
 import com.google.appengine.api.datastore.Key;
@@ -113,15 +117,30 @@ public class UserAccount implements Serializable {
      * @param username the username
      */
     public UserAccount(final String username) {
-        this.key = KeyFactory.createKey(getClass().getSimpleName(), username);
+        MessageDigest sDigest = null;
+        MessageDigest aDigest = null;
+
+    	this.key = KeyFactory.createKey(getClass().getSimpleName(), username);
         this.username = username;
         this.enabled = false;
         this.accountNonExpired = true;
         this.accountNonLocked = true;
         this.credentialsNonExpired = true;
         this.role = "ROLE_USER";
-        this.salt = UUID.randomUUID().toString();
-        this.activationKey = UUID.randomUUID().toString();
+
+        try {
+            sDigest = MessageDigest.getInstance("SHA-256");
+            aDigest = MessageDigest.getInstance("SHA-256");
+            sDigest.update(UUID.randomUUID().toString().getBytes("UTF-8"));
+            aDigest.update(UUID.randomUUID().toString().getBytes("UTF-8"));
+        } catch (NoSuchAlgorithmException e) {
+            throw new IllegalArgumentException(e);
+        } catch (UnsupportedEncodingException e) {
+            throw new IllegalArgumentException(e);
+        }
+
+        this.salt = String.valueOf(Hex.encode(sDigest.digest()));
+        this.activationKey = String.valueOf(Hex.encode(aDigest.digest()));
     }
 
     /**
