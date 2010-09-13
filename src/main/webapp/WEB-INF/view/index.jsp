@@ -26,6 +26,9 @@
         <sec:authorize access="isAnonymous()">
             <p><spring:message code="global.login" htmlEscape="false" /></p>
         </sec:authorize>
+        <sec:authorize access="isAuthenticated()">
+            <p><spring:message code="global.logout" htmlEscape="false" /></p>
+        </sec:authorize>
         <p>
             Server: <%= application.getServerInfo() %><br/>
             Servlet Specification: <%= application.getMajorVersion() %>.<%= application.getMinorVersion() %><br/>
