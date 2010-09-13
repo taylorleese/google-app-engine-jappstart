@@ -26,8 +26,6 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.security.web.authentication.rememberme.
     PersistentRememberMeToken;
 import org.springframework.security.web.authentication.rememberme.
@@ -53,12 +51,6 @@ public class PersistentTokenRepositoryImpl
      * The default cache expiration in seconds.
      */
     private static final int DEFAULT_EXPIRATION = 3600;
-
-    /**
-     * The logger.
-     */
-    private static final Logger LOGGER =
-        LoggerFactory.getLogger(PersistentTokenRepositoryImpl.class);
 
     /**
      * The entity manager.
@@ -161,12 +153,10 @@ public class PersistentTokenRepositoryImpl
             "SELECT p FROM PersistentUser p WHERE username = :username");
         query.setParameter("username", username);
 
-        try {
+        if (query.getResultList().size() > 0) {
             final PersistentUser persistentUser =
                 (PersistentUser) query.getSingleResult();
             entityManager.remove(persistentUser);
-        } catch (NoResultException e) {
-            LOGGER.warn("No tokens exist for the given user: " + username, e);
         }
     }
 
