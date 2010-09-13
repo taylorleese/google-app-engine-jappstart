@@ -26,7 +26,7 @@
     </head>
     <body>
 
-        <sec:authorize access="isAnonymous">
+        <sec:authorize access="isAnonymous()">
 		    <h3><spring:message code="login.header" /></h3>
 		
 		    <c:if test="${not empty error}">
