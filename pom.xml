@@ -5,16 +5,16 @@
     This file is part of jappstart.
 
     jappstart is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
+    it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
     jappstart is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+    GNU Lesser General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
+    You should have received a copy of the GNU Lesser General Public License
     along with jappstart.  If not, see <http://www.gnu.org/licenses />.
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
@@ -30,8 +30,8 @@
 
     <licenses>
         <license>
-            <name>GNU General Public License v3</name>
-            <url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
+            <name>GNU Lesser General Public License v3</name>
+            <url>http://www.gnu.org/licenses/lgpl.txt</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
