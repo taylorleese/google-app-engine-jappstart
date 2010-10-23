@@ -75,7 +75,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <gae.version>1.3.8</gae.version>
         <gae.runtime>1.3.8.1</gae.runtime>
-        <gae.home>${localRepository}/com/google/appengine/appengine-java-sdk/${gae.version}/appengine-java-sdk-${gae.version}</gae.home>
+        <gae.home>${settings.localRepository}/com/google/appengine/appengine-java-sdk/${gae.version}/appengine-java-sdk-${gae.version}</gae.home>
         <maven.gae.plugin.version>0.7.2</maven.gae.plugin.version>
         <datanucleus.version>1.1.5</datanucleus.version>
         <springframework.version>3.0.5.RELEASE</springframework.version>
