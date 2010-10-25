@@ -24,7 +24,7 @@
     <artifactId>jappstart-web</artifactId>
     <packaging>war</packaging>
     <name>jappstart</name>
-    <version>1.17</version>
+    <version>1.18-SNAPSHOT</version>
     <inceptionYear>2010</inceptionYear>
     <url>http://jappstart.com</url>
 
