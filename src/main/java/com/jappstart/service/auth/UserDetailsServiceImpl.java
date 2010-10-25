@@ -30,6 +30,7 @@ import javax.persistence.Query;
 import org.springframework.security.core.authority.GrantedAuthorityImpl;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -181,7 +182,7 @@ public class UserDetailsServiceImpl implements EnhancedUserDetailsService {
                 memcacheService.put(username, user,
                     Expiration.byDeltaSeconds(DEFAULT_EXPIRATION));
             } catch (NoResultException e) {
-                return null;
+            	throw new UsernameNotFoundException("Username not found.", e);
             }
         }
 

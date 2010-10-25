@@ -22,7 +22,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.jappstart.model.auth.UserAccount;
 import com.jappstart.service.auth.EnhancedUserDetailsService;
 
 /**
@@ -87,8 +87,8 @@ public class LoginController {
     public final Map<String, Boolean> validate(
         @RequestBody final Map<String, String> request) {
         final Map<String, Boolean> response = new HashMap<String, Boolean>();
-        final UserDetails user =
-            userDetailsService.loadUserByUsername(request.get("username"));
+        final UserAccount user =
+            userDetailsService.getUser(request.get("username"));
 
         if (user == null) {
             response.put("found", false);
