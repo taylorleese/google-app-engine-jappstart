@@ -182,7 +182,7 @@ public class UserDetailsServiceImpl implements EnhancedUserDetailsService {
                 memcacheService.put(username, user,
                     Expiration.byDeltaSeconds(DEFAULT_EXPIRATION));
             } catch (NoResultException e) {
-            	throw new UsernameNotFoundException("Username not found.", e);
+                throw new UsernameNotFoundException("Username not found.", e);
             }
         }
 
