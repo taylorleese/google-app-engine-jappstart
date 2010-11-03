@@ -51,7 +51,6 @@
     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
         <property name="cookieName" value="USER_LOCALE" />
         <property name="cookieMaxAge" value="1209600" />
-        <property name="defaultLocale" value="en_US" />
     </bean>
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
