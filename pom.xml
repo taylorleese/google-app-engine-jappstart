@@ -498,8 +498,8 @@
                     </plugin>
                     <plugin>
                         <groupId>org.zeroturnaround</groupId>
-                        <artifactId>javarebel-maven-plugin</artifactId>
-                        <version>1.0.5</version>
+                        <artifactId>jrebel-maven-plugin</artifactId>
+                        <version>1.0.7</version>
                         <executions>
                             <execution>
                                 <id>generate-rebel-xml</id>
