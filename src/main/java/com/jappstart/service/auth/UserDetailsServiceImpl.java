@@ -35,9 +35,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.google.appengine.api.datastore.DatastoreService;
-import com.google.appengine.api.labs.taskqueue.Queue;
-import com.google.appengine.api.labs.taskqueue.QueueFactory;
-import com.google.appengine.api.labs.taskqueue.TaskOptions;
+import com.google.appengine.api.taskqueue.Queue;
+import com.google.appengine.api.taskqueue.QueueFactory;
+import com.google.appengine.api.taskqueue.TaskOptions;
 import com.google.appengine.api.memcache.Expiration;
 import com.google.appengine.api.memcache.MemcacheService;
 import com.jappstart.exception.DuplicateUserException;
@@ -255,7 +255,7 @@ public class UserDetailsServiceImpl implements EnhancedUserDetailsService {
             Expiration.byDeltaSeconds(DEFAULT_EXPIRATION));
 
         final TaskOptions taskOptions =
-            TaskOptions.Builder.url(mailTaskUrl)
+            TaskOptions.Builder.withUrl(mailTaskUrl)
             .param("username", user.getUsername())
             .param("locale", locale.toString());
 
