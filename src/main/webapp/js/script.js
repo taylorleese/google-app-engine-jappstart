@@ -29,7 +29,7 @@ function sendJson(url, func) {
         values[this.name] = $(this).val();
     });
 	
-	$.ajax({
+    $.ajax({
         url: url,
         contentType: 'application/json',
         dataType: 'json',
@@ -46,7 +46,7 @@ function sendJson(url, func) {
  *   func - the function to call on success 
  */
 function sendJson(values, url, func) {
-	$.ajax({
+    $.ajax({
         url: url,
         contentType: 'application/json',
         dataType: 'json',

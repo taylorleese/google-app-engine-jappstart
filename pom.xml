@@ -76,7 +76,8 @@
         <gae.version>1.4.0</gae.version>
         <gae.runtime>1.4.0</gae.runtime>
         <gae.home>${settings.localRepository}/com/google/appengine/appengine-java-sdk/${gae.version}/appengine-java-sdk-${gae.version}</gae.home>
-        <maven.gae.plugin.version>0.7.3</maven.gae.plugin.version>
+        <rebel.home>${env.REBEL_HOME}</rebel.home>
+        <maven.gae.plugin.version>0.8.0</maven.gae.plugin.version>
         <datanucleus.version>1.1.5</datanucleus.version>
         <springframework.version>3.0.5.RELEASE</springframework.version>
         <springframework.security.version>3.0.5.RELEASE</springframework.security.version>
@@ -374,6 +375,13 @@
                     <severity>0</severity>
                     <serverId>${google.app.id}</serverId>
                 </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <dependencies>
                     <dependency>
                         <groupId>net.kindleit</groupId>
@@ -481,12 +489,19 @@
                                 <jvmFlag>-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8000</jvmFlag>
                                 <jvmFlag>-Dmail.log_mail_level=WARNING</jvmFlag>
                                 <jvmFlag>-Dmail.log_mail_body=true</jvmFlag>
-                                <jvmFlag>-javaagent:${env.REBEL_HOME}\jrebel.jar</jvmFlag>
+                                <jvmFlag>-javaagent:${rebel.home}/jrebel.jar</jvmFlag>
                                 <jvmFlag>-noverify</jvmFlag>
                             </jvmFlags>
                             <severity>0</severity>
                             <serverId>${google.app.id}</serverId>
                         </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>unpack</goal>
+                                </goals>
+                            </execution>
+                        </executions>
                         <dependencies>
                             <dependency>
                                 <groupId>net.kindleit</groupId>
