@@ -86,6 +86,11 @@ public class UserAccount implements Serializable {
     private String activationKey;
 
     /**
+     * The activation e-mail status.
+     */
+    private boolean activationEmailSent;
+
+    /**
      * The enabled status.
      */
     private boolean enabled;
@@ -120,7 +125,7 @@ public class UserAccount implements Serializable {
         MessageDigest sDigest = null;
         MessageDigest aDigest = null;
 
-    	this.key = KeyFactory.createKey(getClass().getSimpleName(), username);
+        this.key = KeyFactory.createKey(getClass().getSimpleName(), username);
         this.username = username;
         this.enabled = false;
         this.accountNonExpired = true;
@@ -141,6 +146,7 @@ public class UserAccount implements Serializable {
 
         this.salt = String.valueOf(Hex.encode(sDigest.digest()));
         this.activationKey = String.valueOf(Hex.encode(aDigest.digest()));
+        this.activationEmailSent = false;
     }
 
     /**
@@ -285,6 +291,25 @@ public class UserAccount implements Serializable {
      */
     public final void setActivationKey(final String activationKey) {
         this.activationKey = activationKey;
+    }
+
+    /**
+     * Indicates if the activation e-mail has been sent.
+     *
+     * @return true if sent; false otherwise
+     */
+    public final boolean isActivationEmailSent() {
+        return activationEmailSent;
+    }
+
+    /**
+     * Sets the activation e-mail sent status.
+     *
+     * @param activationEmailSent true if sent; false otherwise
+     */
+    public final void setActivationEmailSent(
+        final boolean activationEmailSent) {
+        this.activationEmailSent = activationEmailSent;
     }
 
     /**

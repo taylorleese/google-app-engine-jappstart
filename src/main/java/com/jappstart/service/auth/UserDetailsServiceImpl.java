@@ -60,6 +60,12 @@ public class UserDetailsServiceImpl implements EnhancedUserDetailsService {
     private static final String USERNAME = "username";
 
     /**
+     * The select user query.
+     */
+    private static final String SELECT_USER =
+        "SELECT u FROM UserAccount u WHERE username = :username";
+
+    /**
      * The entity manager.
      */
     @PersistenceContext
@@ -288,6 +294,57 @@ public class UserDetailsServiceImpl implements EnhancedUserDetailsService {
             return true;
         } catch (NoResultException e) {
             return false;
+        }
+    }
+
+    /**
+     * Indicates if the activation e-mail has been sent.
+     *
+     * @param username the username
+     * @return true if sent; false otherwise
+     */
+    @Override
+    public final boolean isActivationEmailSent(final String username) {
+        UserAccount user = (UserAccount) memcacheService.get(username);
+
+        if (user == null) {
+            final Query query = entityManager.createQuery(SELECT_USER);
+            query.setParameter(USERNAME, username);
+
+            try {
+                user = (UserAccount) query.getSingleResult();
+
+                memcacheService.put(username, user,
+                    Expiration.byDeltaSeconds(DEFAULT_EXPIRATION));
+            } catch (NoResultException e) {
+                throw new UsernameNotFoundException("Username not found.", e);
+            }
+        }
+
+        return user.isActivationEmailSent();
+    }
+
+    /**
+     * Updates the activation e-mail sent status.
+     *
+     * @param username the username
+     */
+    @Override
+    @Transactional
+    public final void activationEmailSent(final String username) {
+        final Query query = entityManager.createQuery(SELECT_USER);
+        query.setParameter(USERNAME, username);
+
+        try {
+            final UserAccount user = (UserAccount) query.getSingleResult();
+            user.setActivationEmailSent(true);
+
+            entityManager.persist(user);
+
+            memcacheService.put(user.getUsername(), user,
+                Expiration.byDeltaSeconds(DEFAULT_EXPIRATION));
+        } catch (NoResultException e) {
+            throw new UsernameNotFoundException("Username not found.", e);
         }
     }
 

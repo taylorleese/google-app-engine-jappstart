@@ -53,4 +53,19 @@ public interface EnhancedUserDetailsService extends UserDetailsService {
      */
     boolean activateUser(final String key);
 
+    /**
+     * Indicates if the activation e-mail has been sent.
+     *
+     * @param username the username
+     * @return true if sent; false otherwise
+     */
+    boolean isActivationEmailSent(final String username);
+
+    /**
+     * Updates the activation e-mail sent status.
+     *
+     * @param username the username
+     */
+    void activationEmailSent(final String username);
+
 }
