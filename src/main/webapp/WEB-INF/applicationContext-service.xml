@@ -22,10 +22,11 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="defaultEncoding" value="utf-8"/>
         <property name="basenames">
             <list>
-                <value>messages</value>
+                <value>classpath:messages</value>
             </list>
         </property>
     </bean>
