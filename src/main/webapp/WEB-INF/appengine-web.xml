@@ -23,6 +23,7 @@
     <version>${google.app.version}</version>
 
     <sessions-enabled>true</sessions-enabled>
+    <threadsafe>true</threadsafe>
 
     <static-files>
         <include path="**" expiration="14d" />
