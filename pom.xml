@@ -73,15 +73,15 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <gae.version>1.4.3</gae.version>
-        <gae.runtime>1.4.3</gae.runtime>
+        <gae.version>1.5.0.1</gae.version>
+        <gae.runtime>1.5.0.1</gae.runtime>
         <gae.home>${settings.localRepository}/com/google/appengine/appengine-java-sdk/${gae.version}/appengine-java-sdk-${gae.version}</gae.home>
         <rebel.home>${env.REBEL_HOME}</rebel.home>
         <maven.gae.plugin.version>0.8.4</maven.gae.plugin.version>
         <datanucleus.version>1.1.5</datanucleus.version>
         <springframework.version>3.0.5.RELEASE</springframework.version>
         <springframework.security.version>3.0.5.RELEASE</springframework.security.version>
-        <slf4j.version>1.5.11</slf4j.version>
+        <slf4j.version>1.6.1</slf4j.version>
     </properties>
 
     <repositories>

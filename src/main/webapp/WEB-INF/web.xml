@@ -33,6 +33,11 @@
         <param-value>${google.jsapi.https.key}</param-value>
     </context-param>
 
+    <context-param>
+        <param-name>jQueryVersion</param-name>
+        <param-value>${jquery.ver}</param-value>
+    </context-param>
+
     <servlet>
         <servlet-name>dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
