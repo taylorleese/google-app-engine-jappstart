@@ -24,7 +24,7 @@
         <title><spring:message code="create.title" /></title>
     </head>
     <body>
-		<form:form modelAttribute="register" action="/register/create" method="post">
+		    <form:form modelAttribute="register" action="/register/create" method="post">
             <fieldset>      
                 <legend><spring:message code="create.legend" /></legend>
                 <p>
@@ -53,5 +53,5 @@
                 </p>
             </fieldset>
         </form:form>
-	</body>
+    </body>
 </html>

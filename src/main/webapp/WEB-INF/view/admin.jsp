@@ -24,7 +24,7 @@
     <body>
 		<h3><spring:message code="admin.header" /></h3>
 		<ul>
-            <li><spring:message code="admin.flush" htmlEscape="false" /></li>
-        </ul>
+        <li><spring:message code="admin.flush" htmlEscape="false" /></li>
+    </ul>
 	</body>
 </html>

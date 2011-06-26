@@ -17,7 +17,7 @@
     You should have received a copy of the GNU Lesser General Public License
     along with jappstart.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 3.0//EN" "http://tuckey.org/res/dtds/urlrewrite3.0.dtd">
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 3.1//EN" "http://www.tuckey.org/res/dtds/urlrewrite3.1.dtd">
 <urlrewrite>
     <rule>
         <from>^/appstats(.*)$</from>
