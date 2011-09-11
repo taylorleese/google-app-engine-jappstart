@@ -10,3 +10,7 @@
 /.checkstyle
 /pom.xml.releaseBackup
 /fbfilter.xml
+/.idea
+/jappstart-web.iml
+/.DS_Store
+/src/.DS_Store

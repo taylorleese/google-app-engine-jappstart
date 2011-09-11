@@ -73,14 +73,14 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <gae.version>1.5.1</gae.version>
-        <gae.runtime>1.5.1</gae.runtime>
+        <gae.version>1.5.3</gae.version>
+        <gae.runtime>1.5.3</gae.runtime>
         <gae.home>${settings.localRepository}/com/google/appengine/appengine-java-sdk/${gae.version}/appengine-java-sdk-${gae.version}</gae.home>
         <rebel.home>${env.REBEL_HOME}</rebel.home>
-        <maven.gae.plugin.version>0.8.4</maven.gae.plugin.version>
+        <maven.gae.plugin.version>0.9.1</maven.gae.plugin.version>
         <datanucleus.version>1.1.5</datanucleus.version>
-        <springframework.version>3.0.5.RELEASE</springframework.version>
-        <springframework.security.version>3.0.5.RELEASE</springframework.security.version>
+        <springframework.version>3.0.6.RELEASE</springframework.version>
+        <springframework.security.version>3.0.7.RELEASE</springframework.security.version>
         <slf4j.version>1.6.1</slf4j.version>
     </properties>
 
@@ -208,7 +208,7 @@
         <dependency>
             <groupId>com.google.appengine.orm</groupId>
             <artifactId>datanucleus-appengine</artifactId>
-            <version>1.0.7</version>
+            <version>1.0.9</version>
         </dependency>
         <dependency>
             <groupId>org.apache.geronimo.specs</groupId>
@@ -394,7 +394,7 @@
             <plugin>
                 <groupId>net.alchim31.maven</groupId>
                 <artifactId>yuicompressor-maven-plugin</artifactId>
-                <version>1.1</version>
+                <version>1.2</version>
                 <executions>
                     <execution>
                         <goals>
