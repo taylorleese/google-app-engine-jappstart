@@ -16,7 +16,7 @@ Notes:
 * JSAPI keys can be obtained [here](http://code.google.com/apis/ajaxlibs/documentation/index.html#sign_up_for_an_api_key).
 
 ## Configure Settings
-Create a settings.xml and a settings-security.xml in your local .m2 folder. See [Maven - Password Encryption](http://maven.apache.org/guides/mini/guide-encryption.html) for instructions on how to encrypt your GAE password.
+Create a `settings.xml` and a `settings-security.xml` in your local .m2 folder. See [Maven - Password Encryption](http://maven.apache.org/guides/mini/guide-encryption.html) for instructions on how to encrypt your GAE password.
 
 ```xml
 <!-- settings.xml -->
