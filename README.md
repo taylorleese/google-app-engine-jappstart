@@ -2,7 +2,7 @@
 jappstart is a Java framework for Google App Engine built on Spring, Spring Security, and Sitemesh. The project aims to be the starting point for Google App Engine Java applications. It's not a framework in the traditional sense -- rather it is designed to provide a solid foundation for GAE/Java applications that can be easily extended by developers.
 
 ## Configure Property Files
-Configure the following properties in filter-local.properties, filter-dev.properties, and filter-prod.properties.
+Configure the following properties in `filter-local.properties`, `filter-dev.properties`, and `filter-prod.properties`.
 
     google.app.id
     google.jsapi.http.key
@@ -11,8 +11,9 @@ Configure the following properties in filter-local.properties, filter-dev.proper
     mail.fromAddress
 
 Notes:
-* see [Sending Mail](http://code.google.com/appengine/docs/java/mail/overview.html#Sending_Mail) for details regarding e-mail address restrictions
-* jsapi keys can be obtained [here](http://code.google.com/apis/ajaxlibs/documentation/index.html#sign_up_for_an_api_key)
+
+* See [Sending Mail](http://code.google.com/appengine/docs/java/mail/overview.html#Sending_Mail) for details regarding e-mail address restrictions.
+* JSAPI keys can be obtained [here](http://code.google.com/apis/ajaxlibs/documentation/index.html#sign_up_for_an_api_key).
 
 ## Configure Settings
 Create a settings.xml and a settings-security.xml in your local .m2 folder. See [Maven - Password Encryption](http://maven.apache.org/guides/mini/guide-encryption.html) for instructions on how to encrypt your GAE password.
@@ -43,22 +44,28 @@ Create a settings.xml and a settings-security.xml in your local .m2 folder. See 
 ```
 
 ## Build/Deploy
-Run `mvn clean package -P local` to create a new local build
-Run `mvn gae:run -P local` to run locally
-Run `mvn gae:stop -P local` to stop the local jetty server
-Run `mvn clean package -P dev` to create a new dev build
-Run `mvn gae:deploy -P dev` to deploy to your dev app engine app
-Run `mvn clean package -P prod` to create a new prod build
-Run `mvn gae:deploy -P prod` to deploy to your prod app engine app
+* Run `mvn clean package -P local` to create a new local build
+* Run `mvn gae:run -P local` to run locally
+* Run `mvn gae:stop -P local` to stop the local jetty server
+* Run `mvn clean package -P dev` to create a new dev build
+* Run `mvn gae:deploy -P dev` to deploy to your dev app engine app
+* Run `mvn clean package -P prod` to create a new prod build
+* Run `mvn gae:deploy -P prod` to deploy to your prod app engine app
 
 ## Localization
-To demonstrate the localization functionality just append the following to any url: /some/url?locale=en_US or /some/url?locale=tl_PH. To support additional locales just create a new messages_xx_YY.properties and set the new locale via /some/url?locale=xx_YY.
+To demonstrate the localization functionality just append the following to any url: 
+
+    /some/url?locale=en_US or /some/url?locale=tl_PH. 
+    
+To support additional locales just create a new `messages_xx_YY.properties` and set the new locale via:
+
+    /some/url?locale=xx_YY.
 
 ## JRebel Usage
-Install the [JRebel Nightly Build](http://www.zeroturnaround.com/jrebel/early-access/).
-Define a `REBEL_HOME` environment variable
-Run `mvn clean compile -P local` to create a new local build
-Run `mvn gae:run -P local-jrebel` to run locally with JRebel support
+* Install the [JRebel Nightly Build](http://www.zeroturnaround.com/jrebel/early-access/).
+* Define a `REBEL_HOME` environment variable
+* Run `mvn clean compile -P local` to create a new local build
+* Run `mvn gae:run -P local-jrebel` to run locally with JRebel support
 
 ## Remote API/Bulk Loader Usage
 Below is an example of how to use the bulk loader to copy all data from the production server to the local development server. Omit the "--kind" option to dump/restore all kinds. See [this](http://code.google.com/appengine/docs/python/tools/uploadingdata.html) for more info.
@@ -75,7 +82,7 @@ Restore:
 See the [Google App Engine Blog](http://googlewebtoolkit.blogspot.com/2010/08/how-to-use-google-plugin-for-eclipse.html).
 
 # Copyright
-Copyright (C) 2010 Taylor Leese (tleese22@gmail.com)
+Copyright (C) 2010 Taylor Leese
 
 This file is part of jappstart.
 
