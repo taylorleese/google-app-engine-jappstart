@@ -52,6 +52,21 @@
         <property name="cookieName" value="USER_LOCALE" />
         <property name="cookieMaxAge" value="1209600" />
     </bean>
+    
+    <bean id="contentNegotiatingViewResolver" class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="order" value="1" />
+		<property name="mediaTypes">
+			<map>
+				<entry key="json" value="application/json" />
+				<entry key="html" value="text/html" />
+			</map>
+		</property>
+		<property name="defaultViews">
+			<list>
+				<bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
+			</list>
+		</property>
+	</bean>
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/view/" />
