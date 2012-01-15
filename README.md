@@ -1,7 +1,7 @@
 # Getting Started Guide
 jappstart is a Java framework for Google App Engine built on Spring, Spring Security, and Sitemesh. The project aims to be the starting point for Google App Engine Java applications. It's not a framework in the traditional sense -- rather it is designed to provide a solid foundation for GAE/Java applications that can be easily extended by developers.
 
-# Features
+## Features
 * Appstats Support
 * Google AJAX Library API (jQuery)
 * Gravatar Integration
@@ -28,7 +28,7 @@ jappstart is a Java framework for Google App Engine built on Spring, Spring Secu
 * Task Queue Support
 * URL Rewrite Integration
 
-# Versions
+## Versions
 * Goole App Engine SDK for Java 1.6.0
 * jQuery 1.7.1
 * Maven GAE Plugin 0.9.2
