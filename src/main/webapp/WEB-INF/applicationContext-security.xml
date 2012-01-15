@@ -21,9 +21,9 @@
     xmlns:beans="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
         http://www.springframework.org/schema/security
-        http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+        http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
     <http auto-config="false" access-decision-manager-ref="accessDecisionManager" use-expressions="true">
         <intercept-url pattern="/_ah/**" access="hasRole('ROLE_ANONYMOUS')" requires-channel="http" />
@@ -36,15 +36,10 @@
         <intercept-url pattern="/register/**" access="hasRole('ROLE_ANONYMOUS')" requires-channel="${application.secureChannel}" />
         <intercept-url pattern="/" access="hasRole('ROLE_ANONYMOUS')" requires-channel="http" />
         <intercept-url pattern="/**" access="hasRole('ROLE_USER')" requires-channel="http" />
-        <form-login login-page="/login" login-processing-url="/login/submit" authentication-failure-url="/login/error" />
+        <form-login login-page="/login" login-processing-url="/login/submit" authentication-failure-url="/login/error" username-parameter="username" password-parameter="password" />
         <logout logout-url="/logout" />
         <remember-me services-ref="rememberMeServices" key="${google.app.id}" />
     </http>
-
-    <beans:bean id="userPassAuthFilterBeanPostProcessor" class="com.jappstart.service.auth.UserPassAuthFilterBeanPostProcessor">
-        <beans:property name="usernameParameter" value="username" />
-        <beans:property name="passwordParameter" value="password" />
-    </beans:bean>
 
     <beans:bean id="userDetailsService" class="com.jappstart.service.auth.UserDetailsServiceImpl">
         <beans:property name="datastoreService" ref="datastoreService" />

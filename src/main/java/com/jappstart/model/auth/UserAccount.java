@@ -30,7 +30,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-import org.springframework.security.core.codec.Hex;
+import org.springframework.security.crypto.codec.Hex;
 import org.springframework.stereotype.Repository;
 
 import com.google.appengine.api.datastore.Key;
