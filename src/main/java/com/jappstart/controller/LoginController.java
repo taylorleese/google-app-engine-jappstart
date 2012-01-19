@@ -90,11 +90,7 @@ public class LoginController {
         final UserAccount user =
             userDetailsService.getUser(request.get("username"));
 
-        if (user == null) {
-            response.put("found", false);
-        } else {
-            response.put("found", true);
-        }
+        response.put("found", user != null);
 
         return response;
     }

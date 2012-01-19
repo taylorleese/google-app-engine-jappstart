@@ -73,8 +73,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <gae.version>1.6.0</gae.version>
-        <gae.runtime>1.6.0</gae.runtime>
+        <gae.version>1.6.1</gae.version>
+        <gae.runtime>1.6.1</gae.runtime>
         <gae.home>${settings.localRepository}/com/google/appengine/appengine-java-sdk/${gae.version}/appengine-java-sdk-${gae.version}</gae.home>
         <rebel.home>${env.REBEL_HOME}</rebel.home>
         <maven.gae.plugin.version>0.9.2</maven.gae.plugin.version>

@@ -27,8 +27,8 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import org.springframework.security.core.authority.GrantedAuthorityImpl;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -192,7 +192,7 @@ public class UserDetailsServiceImpl implements EnhancedUserDetailsService {
             }
         }
 
-        authorities.add(new GrantedAuthorityImpl(user.getRole()));
+        authorities.add(new SimpleGrantedAuthority(user.getRole()));
 
         return new EnhancedUser(user.getUsername(), user.getEmail(),
             user.getDisplayName(), user.getPassword(), user.getSalt(),
