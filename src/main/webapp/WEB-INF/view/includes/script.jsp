@@ -1,5 +1,5 @@
 <%--
-    Copyright (C) 2010 Taylor Leese (tleese22@gmail.com)
+    Copyright (C) 2010-2012 Taylor Leese (tleese22@gmail.com)
 
     This file is part of jappstart.
 

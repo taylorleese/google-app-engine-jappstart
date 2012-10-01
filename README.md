@@ -29,7 +29,7 @@ jappstart is a Java framework for Google App Engine built on Spring, Spring Secu
 * URL Rewrite Integration
 
 ## Versions
-* Goole App Engine SDK for Java 1.6.0
+* Goole App Engine SDK for Java 1.7.0
 * jQuery 1.7.1
 * Maven GAE Plugin 0.9.2
 * Spring 3.1.0
@@ -116,7 +116,7 @@ Restore:
 See the [Google App Engine Blog](http://googlewebtoolkit.blogspot.com/2010/08/how-to-use-google-plugin-for-eclipse.html).
 
 # Copyright
-Copyright (C) 2010 Taylor Leese
+Copyright (C) 2010-2012 Taylor Leese
 
 This file is part of jappstart.
 
