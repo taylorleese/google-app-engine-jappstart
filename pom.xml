@@ -24,7 +24,7 @@
     <artifactId>jappstart-web</artifactId>
     <packaging>war</packaging>
     <name>jappstart</name>
-    <version>1.38-SNAPSHOT</version>
+    <version>1.38</version>
     <inceptionYear>2010</inceptionYear>
     <url>http://jappstart.com</url>
 
@@ -341,7 +341,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore></ignore>
+										<ignore />
 									</action>
 								</pluginExecution>
 								<pluginExecution>
