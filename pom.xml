@@ -73,12 +73,12 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <gae.version>1.7.0</gae.version>
-        <gae.runtime>1.7.0</gae.runtime>
+        <gae.version>1.8.0</gae.version>
+        <gae.runtime>1.8.0</gae.runtime>
         <gae.home>${settings.localRepository}/com/google/appengine/appengine-java-sdk/${gae.version}/appengine-java-sdk-${gae.version}</gae.home>
         <rebel.home>${env.REBEL_HOME}</rebel.home>
-        <maven.gae.plugin.version>0.9.2</maven.gae.plugin.version>
-        <datanucleus.version>1.1.5</datanucleus.version>
+        <maven.gae.plugin.version>0.9.5</maven.gae.plugin.version>
+        <datanucleus.version>3.1.1</datanucleus.version>
         <springframework.version>3.1.0.RELEASE</springframework.version>
         <springframework.security.version>3.1.0.RELEASE</springframework.security.version>
         <slf4j.version>1.6.4</slf4j.version>
@@ -143,12 +143,6 @@
         <!-- Runtime Scope -->
         <dependency>
             <groupId>org.datanucleus</groupId>
-            <artifactId>datanucleus-jpa</artifactId>
-            <version>${datanucleus.version}</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.datanucleus</groupId>
             <artifactId>datanucleus-core</artifactId>
             <version>${datanucleus.version}</version>
             <exclusions>
@@ -206,24 +200,32 @@
 
         <!-- Compile Scope -->
         <dependency>
+            <groupId>org.datanucleus</groupId>
+			<artifactId>datanucleus-api-jpa</artifactId>
+            <version>${datanucleus.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.google.appengine.orm</groupId>
             <artifactId>datanucleus-appengine</artifactId>
-            <version>1.0.10</version>
+            <version>2.1.1</version>
+            <!-- Need to exclude the enhancer since it interfere with the enhancer 
+				plugin. -->
+			<exclusions>
+				<exclusion>
+					<groupId>org.datanucleus</groupId>
+					<artifactId>datanucleus-enhancer</artifactId>
+				</exclusion>
+			</exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.geronimo.specs</groupId>
-            <artifactId>geronimo-jpa_3.0_spec</artifactId>
-            <version>1.1.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.geronimo.specs</groupId>
-            <artifactId>geronimo-jta_1.1_spec</artifactId>
-            <version>1.1.1</version>
+            <artifactId>geronimo-jpa_2.0_spec</artifactId>
+            <version>1.1</version>
         </dependency>
         <dependency>
             <groupId>javax.jdo</groupId>
-            <artifactId>jdo2-api</artifactId>
-            <version>2.3-eb</version>
+            <artifactId>jdo-api</artifactId>
+            <version>3.0.1</version>
             <exclusions>
                 <exclusion>
                     <groupId>javax.transaction</groupId>
@@ -341,6 +343,9 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
+										<execute>
+											<runOnIncremental>false</runOnIncremental>
+										</execute>
 										<ignore />
 									</action>
 								</pluginExecution>
@@ -384,8 +389,10 @@
             <plugin>
                 <groupId>org.datanucleus</groupId>
                 <artifactId>maven-datanucleus-plugin</artifactId>
-                <version>1.1.4</version>
+                <version>${datanucleus.version}</version>
                 <configuration>
+                	<!-- Added due to command line length problem in Windows -->
+                	<fork>false</fork>
                     <mappingIncludes>**/model/*/*.class</mappingIncludes>
                     <verbose>true</verbose>
                     <enhancerName>ASM</enhancerName>
@@ -419,12 +426,12 @@
                     <dependency>
                         <groupId>org.datanucleus</groupId>
                         <artifactId>datanucleus-enhancer</artifactId>
-                        <version>1.1.4</version>
+                        <version>${datanucleus.version}</version>
                     </dependency>
                     <dependency>
-                        <groupId>javax.jdo</groupId>
-                        <artifactId>jdo2-api</artifactId>
-                        <version>2.3-ec</version>
+                        <groupId>org.datanucleus</groupId>
+                        <artifactId>datanucleus-api-jdo</artifactId>
+                        <version>${datanucleus.version}</version>
                     </dependency>
                 </dependencies>
             </plugin>
