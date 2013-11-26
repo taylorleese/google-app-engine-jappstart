@@ -198,6 +198,12 @@
 			<version>${datanucleus.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>org.datanucleus</groupId>
+			<artifactId>datanucleus-api-jdo</artifactId>
+			<version>${datanucleus.version}</version>
+		</dependency>
+
+		<dependency>
 			<groupId>com.google.appengine.orm</groupId>
 			<artifactId>datanucleus-appengine</artifactId>
 			<version>2.1.1</version>
@@ -374,7 +380,7 @@
 									<pluginExecutionFilter>
 										<groupId>org.datanucleus</groupId>
 										<artifactId>maven-datanucleus-plugin</artifactId>
-										<versionRange>[1.1.4,)</versionRange>
+										<versionRange>[3.1.1,)</versionRange>
 										<goals>
 											<goal>enhance</goal>
 										</goals>
@@ -433,7 +439,7 @@
 					<mappingIncludes>**/model/*/*.class</mappingIncludes>
 					<verbose>true</verbose>
 					<enhancerName>ASM</enhancerName>
-					<api>JPA</api>
+					<api>JDO</api>
 				</configuration>
 				<executions>
 					<execution>
