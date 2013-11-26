@@ -73,11 +73,11 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <gae.version>1.8.0</gae.version>
-        <gae.runtime>1.8.0</gae.runtime>
+        <gae.version>1.8.6</gae.version>
+        <gae.runtime>1.8.6</gae.runtime>
         <gae.home>${settings.localRepository}/com/google/appengine/appengine-java-sdk/${gae.version}/appengine-java-sdk-${gae.version}</gae.home>
         <rebel.home>${env.REBEL_HOME}</rebel.home>
-        <maven.gae.plugin.version>0.9.5</maven.gae.plugin.version>
+        <maven.gae.plugin.version>0.9.6</maven.gae.plugin.version>
         <datanucleus.version>3.1.1</datanucleus.version>
         <springframework.version>3.1.0.RELEASE</springframework.version>
         <springframework.security.version>3.1.0.RELEASE</springframework.security.version>
@@ -483,7 +483,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>2.1.1</version>
+                <version>2.3</version>
                 <configuration>
                     <webResources>
                         <resource>
@@ -500,10 +500,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>2.5.1</version>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>1.7</source>
+                    <target>1.7</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -588,7 +588,7 @@
                     <plugin>
                         <groupId>org.zeroturnaround</groupId>
                         <artifactId>jrebel-maven-plugin</artifactId>
-                        <version>1.1.0</version>
+                        <version>1.1.5</version>
                         <executions>
                             <execution>
                                 <id>generate-rebel-xml</id>
