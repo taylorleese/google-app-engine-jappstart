@@ -96,7 +96,7 @@
         <pluginRepository>
             <id>sonatype-plugin-repo</id>
             <name>sonatype plugin repository</name>
-            <url>http://oss.sonatype.org/content/repositories/github-releases</url>
+            <url>https://oss.sonatype.org/content/repositories/github-releases</url>
         </pluginRepository>
     </pluginRepositories>
 
